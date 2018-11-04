@@ -1,25 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
+
+import Index from './components/body-index.jsx';
+import Members from './components/body-members.jsx';
+import About from './components/body-about.jsx';
+import Footer from './components/footer.jsx';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Router>
+          <div>
+            <header className="header">
+              <nav>
+                <ul>
+                  <li><Link to="/">首页</Link></li>
+                  <li><a href="//www.baidu.com">动态</a></li>
+                  <li><Link to="/members">成员</Link></li>
+                  <li><Link to="/about">关于</Link></li>
+                </ul>
+              </nav>
+            </header>
+            <Route path="/" component={Index}></Route>
+            <Route path="/members" component={Members}></Route>
+            <Route path="/about" component={About}></Route>
+          </div>
+        </Router>
+        <Footer></Footer>
       </div>
     );
   }

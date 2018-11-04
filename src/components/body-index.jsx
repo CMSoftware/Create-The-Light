@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './body-index.css';
+import './body-index.scss';
 
 import Carousel from './carousel-index.jsx';
 export default class Body extends Component {

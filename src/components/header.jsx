@@ -1,6 +1,6 @@
 /*
 ** 首页导航栏
-** Created by vzt
+** Coding by vzt
 ** 2018/11/4
 */
 import React, { Component } from 'react';

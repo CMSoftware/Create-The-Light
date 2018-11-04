@@ -1,3 +1,7 @@
+/*
+** Created by vzt & lsj
+** 2018/11/4
+*/
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.scss';

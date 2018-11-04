@@ -1,5 +1,8 @@
-
-
+/*
+** 首页底部栏
+** Coding by lsj
+** 2018/11/4
+*/
 import React, { Component } from 'react';
 import './footer.scss';
 

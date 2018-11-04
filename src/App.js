@@ -4,6 +4,7 @@
 */
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import 'normalize.css';
 import './App.scss';
 
 import Header from './components/header.jsx';

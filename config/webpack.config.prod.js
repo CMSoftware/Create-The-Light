@@ -21,6 +21,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const px2rem = require('postcss-px2rem');
 
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -87,6 +88,7 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
             },
             stage: 3,
           }),
+          px2rem({remUnit: 75}),
         ],
         sourceMap: shouldUseSourceMap,
       },

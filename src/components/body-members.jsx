@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './body-members.css';
+import './body-members.scss';
 
 export default class Members extends Component {
   render() {

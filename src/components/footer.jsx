@@ -12,9 +12,9 @@ export default class Footer extends Component {
       <footer className="footer">
         <div className="footer__introduction">
           <div className="footer__picture">
-            <img className="footer__picture--logo" src="https://webinput.nie.netease.com/img/my/icon.png" alt=""></img>
+            <img className="footer__picture--logo" src="https://webinput.nie.netease.com/img/my/icon.png" alt="logo"></img>
             <div className="footer__picture--description">
-              备产劳段温在对该装部些听管价线与
+              湖北武汉中南民族大学创明工作室
             </div>
           </div>
           <div className="footer__email">
@@ -33,6 +33,10 @@ export default class Footer extends Component {
             <li><a href="//www.baidu.com">Jrkewost Rltc Lwx Ysibkke Elscqzz Qeneim</a></li>
             <li><a href="//www.baidu.com">Ivvna Huuubpcs Oclcjdgj Nscjyfef Tlrf Ixewowz</a></li>   
           </ul>
+        </div>
+        <div className="footer__elements">
+          <img className="footer__elements--logo" src="https://webinput.nie.netease.com/img/my/icon.png" alt=""></img>
+          <img className="footer__elements--logo" src="https://webinput.nie.netease.com/img/my/icon.png" alt=""></img>
         </div>
       </footer>
     );

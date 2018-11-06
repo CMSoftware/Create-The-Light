@@ -10,6 +10,7 @@ import Throttle from 'lodash.throttle';
 
 export default class Header extends Component {
   getScrollTop() {
+    // 拿到当前滚动条高度
     let scrollTop = 0;
     if(document.documentElement && document.documentElement.scrollTop){    
       scrollTop = document.documentElement.scrollTop;    
@@ -19,6 +20,7 @@ export default class Header extends Component {
     return scrollTop;
   }
   initialScroll(el) {
+    // 监听滚动事件
     this._header = el;
     const throttleFn = Throttle(e => {
       if(this.getScrollTop() > 0) {
@@ -29,30 +31,22 @@ export default class Header extends Component {
     }, 100);
     document.addEventListener('scroll', throttleFn);
   }
-  setFixedHeader() {
-    
-  }
-  setZeroHeader() {
-    
-  }
   render() {
     return (
-      <div className="header-wrapper">
-        <header className="header" ref={el => this.initialScroll(el)}>
-          <div className="logo">
-            <a href="/">
-              <img
-                className="logo__icon"
-                src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2959708265,3856768320&fm=58&bpow=705&bpoh=675"
-                alt="Logo"/>
-              <span className="logo__text">Creative</span>
-            </a>
-          </div>
-          <nav className="nav">
-            {this.props.children}
-          </nav>
-        </header>
-      </div>
+      <header className="header" ref={el => this.initialScroll(el)}>
+        <div className="logo">
+          <a href="/">
+            <img
+              className="logo__icon"
+              src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2959708265,3856768320&fm=58&bpow=705&bpoh=675"
+              alt="Logo"/>
+            <span className="logo__text">Creative</span>
+          </a>
+        </div>
+        <nav className="nav">
+          {this.props.children}
+        </nav>
+      </header>
     );
   }
 }

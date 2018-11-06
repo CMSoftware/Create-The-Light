@@ -3,9 +3,26 @@
 ** 2018/11/05
 */
 .carousel-wrapper {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 1800px;
+  overflow: hidden;
+  .swiper-slide {
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .swiper-pagination {
+    &-bullet {
+      width: 2rem;
+      padding: 0.1rem;
+      outline: none;
+      border-radius: 0;
+      background-color: gold;
+    }
+  }
 }

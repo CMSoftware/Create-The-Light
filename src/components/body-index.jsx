@@ -20,7 +20,7 @@ class Section extends Component {
         </h2>
         <div className="sections__content">
           {i !== 2 ? 
-            (data && data.sections && Array.isArray(data.sections[i].items) ? data.sections[i].items.map((item, index) => {
+            (data && data && Array.isArray(data[i].items) ? data[i].items.map((item, index) => {
               return (
                 <div key={'item' + index} className="sections__item" style={{ backgroundColor: this.props.itemsColor[index] }}>
                   <div className="sections__item-image" style={{ backgroundImage: `url(${item.image})` }}></div>
@@ -35,14 +35,14 @@ class Section extends Component {
             }) : <p>Loading...</p>)
             : // 第三部分（博客）比较特殊
             (<div className="sections__item">
-              <a href={data && data.sections && data.sections[i].url ? data.sections[i].url : '#'}>
+              <a href={data && data && data[i].url ? data[i].url : '#'}>
               <p className="sections__blog-title">
                 <span>推荐博文</span>
                 <span>···</span>
               </p>
               </a>
               <div className="sections__blog-rows">
-                {data && data.sections && Array.isArray(data.sections[i].items) ? data.sections[i].items[0].articles.slice(0, 6).map((article, index) => {
+                {data && data && Array.isArray(data[i].items) ? data[i].items[0].articles.slice(0, 6).map((article, index) => {
                     return (
                       <div key={'article' + index} className="sections__blog-row">
                         <a href={article.url}><span className="sections__blog-article">{article.title}</span></a>
@@ -54,9 +54,9 @@ class Section extends Component {
             </div>)
             }
         </div>
-        {data && Array.isArray(data.sections) && data.sections[i].url && (
+        {data && Array.isArray(data) && data[i].url && (
           <div className="sections__more">
-            <a href={data.sections[i].url}><button className="sections__more-button">更多 ></button></a>
+            <a href={data[i].url}><button className="sections__more-button">更多 ></button></a>
           </div>
         )}
         

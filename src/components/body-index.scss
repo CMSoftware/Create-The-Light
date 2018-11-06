@@ -3,6 +3,9 @@
 ** 2018/11/05
 */
 
+.body {
+  min-width: 1280px;/*no*/
+}
 // section base style
 .sections {
   &__wrapper {

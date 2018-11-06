@@ -31,6 +31,9 @@ export default class Carousel extends Component {
       }
     }, 200);
   }
+  componentWillUnmount() {
+    clearInterval(this._watcher);
+  }
   // 初始化swiper
   setSwiper() {
     const newSwiper = new Swiper('.carousel-wrapper', {

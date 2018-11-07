@@ -1,10 +1,10 @@
 /*
 ** 首页底部栏css
 ** Coding by lsj
-** 2018/11/4
+** 2018/11/7
 */
 $footer__normal--color:#bccff5;
-$footer__link--color:#aaa;
+$footer__link--color:gold;
 .footer {
     width: 100%;
     min-height: 1000px;
@@ -38,7 +38,7 @@ $footer__link--color:#aaa;
             height: 160px;
             line-height: 160px;
             font-size: 20px; /*no*/
-            color: $footer__link--color;
+            color: #fff;
             overflow: hidden;
         }
     }
@@ -57,22 +57,27 @@ $footer__link--color:#aaa;
         flex-direction: column;
         justify-content: center;
         padding-left: 3%;
+        overflow: hidden;
         &--title {
             margin-top: 75px;
             color: $footer__link--color;
         }
-        &>ul>li {
-            list-style: none;
-            height: 120px;
-            &>a, &>a:visited{
-                color: $footer__normal--color;
-                transition: color .3s;
-                text-decoration: none;
+        &--row {
+            display: flex;
+            flex-direction: row;
+            &>ul>li {
+                list-style: none;
+                padding: 40px 0;
+                &>a, &>a:visited{
+                    color: $footer__normal--color;
+                    transition: color .3s;
+                    text-decoration: none;
+                    margin: 0 90px;
+                }
+                &>a:link, &>a:hover, &>a:active {
+                    color: $footer__link--color;
+                }
             }
-            &>a:link, &>a:hover, &>a:active {
-                color: $footer__link--color;
-            }
-            
         }
     }
 
@@ -89,6 +94,79 @@ $footer__link--color:#aaa;
         &--logo {
             width: 270px;
             height: 270px;
+        }
+    }
+}
+@media only screen and (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        &__introduction {
+            width: 100%;
+            padding: 80px;
+            box-sizing: border-box;
+        }
+        &__picture {
+            justify-content: center;
+            height: 120px;
+            &--logo {
+                width: 120px;
+                height: 120px;
+            }
+            &--description {
+                margin-left: 18px;
+                height: 120px;
+                line-height: 120px;
+                font-size: 16px; /*no*/
+            }
+        }
+        &__email {
+            margin-top: 50px;
+            text-align: center;
+            overflow: hidden;
+        }
+        &__copyright {
+            margin-top: 100px;
+            text-align: center;
+        }
+        &__link {
+            display: none;
+        }
+        &__elements {
+            flex-direction: row;
+            padding: 0px 100px 50px 100px;
+            &--logo {
+                width: 10%;
+                min-width: 200px;
+                height: 10%;
+                min-height: 200px;
+            }
+        }
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 1340px) {
+    .footer {
+        padding: 0 5%;
+        box-sizing: border-box;
+        &__introduction {
+            width: 45%;
+        }
+        &__elements {
+            display: none;
+        }
+        &__link {
+            flex: 1;
+            &--row {
+                &>ul>li {
+                    width: 11rem;
+                    height: 80px;
+                    // text-overflow: ellipsis;
+                    // white-space: nowrap;
+                    // overflow: hidden;
+                    &>a, &>a:visited{
+                        margin: 0 60px;
+                    } 
+                }
+            }
         }
     }
 }

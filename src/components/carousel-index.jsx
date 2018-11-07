@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import './carousel-index.scss';
 import isMobile from '../lib/isMobile';
 import Api from '../Api';
+import Loading from '../lib/loading';
 
 import '../../node_modules/swiper/dist/css/swiper.min.css';
 import Swiper from 'swiper';
@@ -24,7 +25,7 @@ export default class Carousel extends Component {
     this.getData();
     // 监听react DOM触发更新，则执行swiper初始化
     this._watcher = setInterval(() => {
-      console.log(this._swiperEl, this._swiperEl.childElementCount);
+      console.log(1);
       if(this._swiperEl && this._swiperEl.childElementCount > 0) {
         this.setSwiper();
         clearInterval(this._watcher);
@@ -68,13 +69,13 @@ export default class Carousel extends Component {
     return (
       <div className="carousel-wrapper">
         <div className="swiper-wrapper" ref={el => this._swiperEl = el}>
-          {this.state.data && Array.isArray(this.state.data) && this.state.data.map((item, index) => {
+          {this.state.data && Array.isArray(this.state.data) ? this.state.data.map((item, index) => {
             return (
               <div key={index} className="swiper-slide">
                 <a href={item.url}><img src={item.image} /></a>
               </div>
             );
-          })}
+          }) : <Loading></Loading>}
         </div>
         <div className="swiper-pagination"></div>
       </div>

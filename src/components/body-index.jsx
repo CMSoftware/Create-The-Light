@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import './body-index.scss';
 
 import Carousel from './carousel-index.jsx';
+import Loading from '../lib/loading';
 import Api from '../Api';
 
 class Section extends Component {
@@ -32,15 +33,13 @@ class Section extends Component {
                   </div>
                 </div>
               );
-            }) : <p>Loading...</p>)
+            }) : <Loading></Loading>)
             : // 第三部分（博客）比较特殊
             (<div className="sections__item">
-              <a href={data && data && data[i].url ? data[i].url : '#'}>
-              <p className="sections__blog-title">
+              <a href={data && data && data[i].url ? data[i].url : '#'}><p className="sections__blog-title">
                 <span>推荐博文</span>
                 <span>···</span>
-              </p>
-              </a>
+              </p></a>
               <div className="sections__blog-rows">
                 {data && data && Array.isArray(data[i].items) ? data[i].items[0].articles.slice(0, 6).map((article, index) => {
                     return (
@@ -49,7 +48,7 @@ class Section extends Component {
                         <span className="sections__blog-author">{article.author}</span>
                       </div>
                     )
-                  }) : <p>Loading...</p>}
+                  }) : <Loading></Loading>}
                 </div>
             </div>)
             }
@@ -106,7 +105,6 @@ export default class Body extends Component {
         this.setState({
           sectionsData: data,
         });
-        console.log(data);
       });
   }
   render() {

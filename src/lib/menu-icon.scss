@@ -1,0 +1,25 @@
+/*
+** Created by vzt
+** 2018/11/07
+*/
+.hamburger .line {
+  width: 1.5rem;
+  height: 0.15rem;
+  background-color: black;
+  display: block;
+  margin: 4px auto;/*no*/
+  transition: all .3s;
+}
+.hamburger {
+  margin-top: 0.5rem;
+  padding: 1rem;
+}
+.hamburger:hover {
+  cursor: pointer;
+}
+#hamburger-2.is-active .line {
+  margin: 0 auto;
+  &:first-child, &:last-child {
+    opacity: 0;
+  }
+}

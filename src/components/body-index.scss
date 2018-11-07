@@ -2,84 +2,7 @@
 ** Created by vzt
 ** 2018/11/05
 */
-@media only screen and (max-width: 768px) {
-  .sections__stacks {
-    .sections__content {
-      flex-flow: column nowrap;
-      height: 70rem;
-      .sections__item {
-      }
-    }
-  }
-  .sections__projects {
-    .sections__content {
-      flex-flow: row wrap;
-      height: 90rem;
-      .sections__item {
-        flex: 1 0 100%;
-      }
-    }
-  }
-  .sections__articles {
-    .sections__content {
-      width: 100%;
-      .sections__blog-author {
-        display: none;
-      }
-    }
-  }
-  .sections__members {
-    .sections__content {
-      flex-flow: column nowrap;
-      height: 60rem;
-      .sections__item {
-        flex: 1 0 100%;
-      }
-    }
-  }
-}
-@media only screen and (min-width: 769px) and (max-width: 1340px) {
-  .sections {
-    &__content {
-      align-items: center;
-    }
-  }
-  .sections__stacks {
-    .sections__content {
-      flex-flow: row wrap;
-      max-width: 44rem;
-      min-width: 30rem;
-      min-height: 35rem;
-      .sections__item {
-        flex: 0 0 18rem;
-        height: 1000px;
-      }
-    }
-  }
-  .sections__projects {
-    .sections__content {
-      flex-flow: row wrap;
-      min-width: 25rem;
-      max-width: 40rem;
-      min-height: 47rem;
-      .sections__item {
-      }
-    }
-  }
-  .sections__articles {
-    .sections__content {
-      .sections__item {
 
-      }
-    }
-  }
-  .sections__members {
-    .sections__content {
-      .sections__item {
-      }
-    }
-  }
-}
 // section base style
 .sections {
   &__wrapper {
@@ -229,9 +152,9 @@
         overflow: hidden;
       }
     }
-    .sections__item-description {
+    // .sections__item-description {
 
-    }
+    // }
   }
 }
 
@@ -306,4 +229,84 @@
       background-color: #fff;
     }
   }
+}
+
+
+// 移动端瞎jer适配
+@media only screen and (max-width: 768px) {
+  .sections__stacks {
+    .sections__content {
+      flex-flow: column nowrap;
+      height: 70rem;
+      // .sections__item {
+      // }
+    }
+  }
+  .sections__projects {
+    .sections__content {
+      flex-flow: row wrap;
+      height: 90rem;
+      .sections__item {
+        flex: 1 0 100%;
+      }
+    }
+  }
+  .sections__articles {
+    .sections__content {
+      width: 100%;
+      .sections__blog-author {
+        display: none;
+      }
+    }
+  }
+  .sections__members {
+    .sections__content {
+      height: 60rem;
+      .sections__item {
+        flex: 1 0 100%;
+      }
+    }
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 1340px) {
+  .sections {
+    &__content {
+      align-items: center;
+    }
+  }
+  .sections__stacks {
+    .sections__content {
+      flex-flow: row wrap;
+      max-width: 44rem;
+      min-width: 30rem;
+      min-height: 35rem;
+      .sections__item {
+        flex: 0 0 18rem;
+        height: 1000px;
+      }
+    }
+  }
+  .sections__projects {
+    .sections__content {
+      flex-flow: row wrap;
+      min-width: 25rem;
+      max-width: 40rem;
+      min-height: 47rem;
+      // .sections__item {
+      // }
+    }
+  }
+  // .sections__articles {
+  //   .sections__content {
+  //     .sections__item {
+
+  //     }
+  //   }
+  // }
+  // .sections__members {
+  //   .sections__content {
+  //     .sections__item {
+  //     }
+  //   }
+  // }
 }

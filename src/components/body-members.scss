@@ -1,8 +1,7 @@
 /*
 ** Coding by lsj
-** 2018/11/5
+** 2018/11/7
 */
-
 @keyframes bannerMove
 {
     0% {
@@ -22,22 +21,19 @@
         transform:scale(0.8) translateY(80%);
     }
 }
-
-@keyframes bannerOut
+@keyframes itemMove
 {
     0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
         opacity: 1;
         transform:scale(1);
     }
-    100% {
-        opacity: 0;
-        transform:scale(0.8) translateY(80%);
-    }
 }
-
 .members {
     width: 100%;
-    background-color: #fff;
     &__banner {
         width: 100%;
         height: 1800px;
@@ -61,11 +57,163 @@
         }
         &--footer {
             font-size: 22px; /*no*/
-            animation: bannerMove .8s ease-in 0s 1 normal forwards;
+            animation: bannerMove 5s ease-in 0s infinite normal forwards;
         }
     }
 
     &__section {
-
+        margin: 200px auto;
+        display: flex;
+        justify-content: center;
+    }
+    &__container {
+        width: 1024px; /*no*/
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        &--item {
+            width: 100%;
+            padding: 100px 0;
+            margin: 100px 0;
+            display: flex;
+            flex-direction: row;
+            border: #e4ecf3 solid 8px;
+            border-radius: 10px;
+            transition: all .5s ease;
+            &-left {
+                width: 25%;
+                min-height: 800px;
+                padding: 0 60px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                &>img {
+                    width: 600px;
+                    height: 600px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+                &-badge {
+                    width: 70%;
+                    display: flex;
+                    flex-flow: row wrap;
+                    margin-top: 36px;
+                    justify-content: center;
+                    &>img {
+                        margin: 20px;
+                        width: 120px;
+                        height: 120px;
+                        background: url('https://static.hdslb.com/images/favicon.ico');
+                        background-size: cover;
+                    }
+                }
+            }
+            &-right {
+                display: flex;
+                flex: 1;
+                padding: 0 120px 0 50px;
+                flex-flow: column nowrap;
+                &-name>h3 {
+                    font-weight: 400;
+                    font-size: 28px; /*no*/
+                    margin-top: 50px; 
+                }
+                &-tag {
+                    font-size: 18px; /*no*/
+                    color: #898f9c;
+                }
+                &-description {
+                    font-size: 16px; /*no*/
+                }
+                &-goal {
+                    font-size: 18px; /*no*/
+                    margin-bottom: 50px;
+                    &>span {
+                        color: #337ab7;
+                    }
+                }
+                &-link {
+                    font-size: 18px; /*no*/
+                    color: #898f9c;
+                }
+            }
+        }
+        &--item:hover {
+            box-shadow: #c6c6c6 0 25px 25px -20px;/*no*/
+            transform: translateY(-5%);
+        }
+        &--animation {
+            transform-origin: 80% 20%;
+            animation: itemMove .5s ease-in 0s 1 normal;
+        }
+    }
+}
+@media only screen and (max-width: 768px) {
+    .members {
+        min-width: 16rem;
+        width: 100%;
+        &__banner {
+            &--top {
+                margin-top: 300px;
+                font-size: 32px; /*no*/ 
+            }
+            &--middle {
+                font-size: 26px; /*no*/
+            }
+            &--footer {
+                font-size: 18px; /*no*/
+                font-weight: 400;
+                margin-top: 200px;
+            }
+        }
+        &__container {
+            padding: 0 100px;
+            &--item {
+                flex-direction: column;
+                align-items: center;
+                &-left {
+                    width: 100%;
+                    &-badge {
+                        width: 100%;
+                        box-sizing: border-box;
+                        padding: 0 60px;
+                    }
+                }
+                &-right {
+                    align-items: center;
+                    padding: 0 100px;
+                    word-break: break-all;
+                    &-name>h3 {
+                        margin: 100px 0 80px 0; 
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 1340px) {
+    .members {
+        &__banner {
+            &--top {
+                margin-top: 260px;
+                font-size: 46px; /*no*/ 
+            }
+            &--middle {
+                font-size: 32px; /*no*/
+            }
+            &--footer {
+                font-size: 20px; /*no*/
+                margin-top: 150px;
+            }
+        }
+        &__container {
+            padding: 0 200px;
+            &--item-left-badge {
+                width: 76%;
+                box-sizing: border-box;
+                padding: 0 10px;
+            }
+        }
     }
 }

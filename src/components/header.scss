@@ -19,6 +19,7 @@ $nav-active-boxshadow-color: #C6C6C6;
   background-color: transparent;
   transform: translateY(15%);
   transition: transform 1s;
+  z-index: 9;
 
   &--active {
     position: fixed;

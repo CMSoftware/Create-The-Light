@@ -31,11 +31,13 @@ export default class Footer extends Component {
               <li><a href="//www.baidu.com">中南民大大学</a></li>
               <li><a href="//www.baidu.com">创新创业学院学院学院</a></li>
               <li><a href="//www.baidu.com">中南民大大学</a></li>
-            </ul>
-            <ul>
               <li><a href="//www.baidu.com">中南民大大学学院学院</a></li>
               <li><a href="//www.baidu.com">创新创业学院</a></li>
             </ul>
+            {/* <ul>
+              <li><a href="//www.baidu.com">中南民大大学学院学院</a></li>
+              <li><a href="//www.baidu.com">创新创业学院</a></li>
+            </ul> */}
           </div>
         </div>
         <div className="footer__elements">

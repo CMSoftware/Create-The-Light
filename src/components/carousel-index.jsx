@@ -25,7 +25,6 @@ export default class Carousel extends Component {
     this.getData();
     // 监听react DOM触发更新，则执行swiper初始化
     this._watcher = setInterval(() => {
-      console.log(1);
       if(this._swiperEl && this._swiperEl.childElementCount > 0) {
         this.setSwiper();
         clearInterval(this._watcher);

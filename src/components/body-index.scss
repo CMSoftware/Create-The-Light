@@ -2,7 +2,9 @@
 ** Created by vzt
 ** 2018/11/05
 */
-
+.body {
+  position: relative;
+}
 // section base style
 .sections {
   &__wrapper {

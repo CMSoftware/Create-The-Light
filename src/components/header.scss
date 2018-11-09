@@ -20,7 +20,9 @@ $nav-active-boxshadow-color: #C6C6C6;
   color: #fff;
   background-color: transparent;
   transform: translateY(15%);
-  transition: transform 1s;
+  transition-property: transform, color;
+  transition-duration: .6s, .3s;
+  transition-timing-function: ease ease-out;
   z-index: 999;
 
   &--active {

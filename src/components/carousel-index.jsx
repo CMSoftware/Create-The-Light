@@ -25,7 +25,6 @@ export default class Carousel extends Component {
     this.getData();
     // 监听react DOM触发更新，则执行swiper初始化
     this._watcher = setInterval(() => {
-      console.log(1);
       if(this._swiperEl && this._swiperEl.childElementCount > 0) {
         this.setSwiper();
         clearInterval(this._watcher);
@@ -72,7 +71,7 @@ export default class Carousel extends Component {
           {this.state.data && Array.isArray(this.state.data) ? this.state.data.map((item, index) => {
             return (
               <div key={index} className="swiper-slide">
-                <a href={item.url}><img src={item.image} /></a>
+                <a href={item.url}><div style={{ backgroundImage: `url(${item.image})` }}></div></a>
               </div>
             );
           }) : <Loading></Loading>}

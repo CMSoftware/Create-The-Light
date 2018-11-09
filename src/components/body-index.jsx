@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import './body-index.scss';
 
-import Carousel from './carousel-index.jsx';
+import Carousel from './carousel-index';
 import Loading from '../lib/loading';
 import Api from '../Api';
 

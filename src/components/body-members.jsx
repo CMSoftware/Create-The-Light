@@ -117,7 +117,7 @@ export default class Members extends Component {
       <div className="members">
         {
           bannerImage ? (
-            <div className="members__banner" style={{ background: `url(${this.state.bannerImage})` }}>
+            <div className="members__banner" style={{ backgroundImage: `url(${this.state.bannerImage})` }}>
               <h1 className="members__banner--top">ChuangMing Members</h1>
               <h1 className="members__banner--middle">创明工作室</h1>
               <h3 ref="bannerText" className="members__banner--footer">{this.state.bannerText}</h3>

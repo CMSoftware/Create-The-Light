@@ -1,18 +1,14 @@
 /*
 ** Coding by lsj
-** 2018/11/7
+** 2018/11/9
 */
 import React, { Component } from 'react';
 import './body-members.scss';
 import LazyLoad from 'react-lazyload';
 import Loading from '../lib/loading';
+import Api from '../Api';
 
-// 滚动字幕组件
-function Banner (props) {
-  return  <h3 className="members__banner--footer">{props.bannerText}</h3>;
-}
-
-// 成员组件
+// 成员item组件
 class MemberItem extends Component {
   constructor(props) {
     super(props);
@@ -24,8 +20,8 @@ class MemberItem extends Component {
   // 显示徽章内容
   initialBadge(img) {
     let imgAlt = img.parentNode.children[1];
-    img.addEventListener('mouseover', () => imgAlt.classList.add('members__container--item-left-badge-imgAltShow'))
-    img.addEventListener('mouseout', () => imgAlt.classList.remove('members__container--item-left-badge-imgAltShow'))
+    img.addEventListener('mouseover', () => imgAlt.classList.add('members__container--item-left-badge-imgAltShow'),true)
+    img.addEventListener('mouseout', () => imgAlt.classList.remove('members__container--item-left-badge-imgAltShow'),true)
   }
   render() {
     return (
@@ -69,96 +65,44 @@ class MemberItem extends Component {
   }
 }
 
+// 成员页面
 export default class Members extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      arrText:[
-        "舔狗最终一无所有",
-        "你吼那么大声干什么",
-        "可以赢，但没必要"
-      ],
-      bannerText:[
-        "舔狗最终一无所有",
-        "你吼那么大声干什么",
-        "可以赢，但没必要"
-      ][0],
-      moveMembers:[
-        {
-          avatar:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=82b70e7e9b2397ddd6799f0261b9d58a/5bafa40f4bfbfbed4ceb01e672f0f736aec31ffc.jpg",
-          name:"卢老爷1",
-          badgeArr:[
-            {link:"https://static.hdslb.com/images/favicon.ico",alt:"高产作家"},
-            {link:"https://static.hdslb.com/images/favicon.ico",alt:"高产演唱家"},
-            {link:"https://avatars0.githubusercontent.com/u/26624039?s=40&v=4",alt:"高产作家"},
-            {link:"https://avatars0.githubusercontent.com/u/26624039?s=40&v=4",alt:"高产演唱家"},
-            {link:"https://static.hdslb.com/images/favicon.ico",alt:"高产演唱家"},
-            {link:"https://static.hdslb.com/images/favicon.ico",alt:"高产作家"},
-          ],
-          tag:"网站组酱油",
-          description:"该成员有点懒，没有什么好写的,该成员有点懒，没有什么好写的,该成员有点懒，没有什么好写的,该成员有点懒，没有什么好写的,该成员有点懒",
-          goal:"中上野",
-          link:"github:ddddd 博客：hsokwqhjldhlqwhdl 博客：hsokwqhjldhlqwhdl 博客：hsokwqhjldhlqwhdl",
-        },
-        {
-          avatar:"https://pic1.zhimg.com/v2-b9f2a045c4e7c04c5f71068c24c160d4_xl.jpg",
-          name:"卢老爷2",
-          badgeArr:[
-            {link:"https://static.hdslb.com/images/favicon.ico",alt:"高产作家"},
-            {link:"https://static.hdslb.com/images/favicon.ico",alt:"高产演唱家"},
-            {link:"https://avatars0.githubusercontent.com/u/26624039?s=40&v=4",alt:"高产演唱家"},
-            {link:"https://avatars0.githubusercontent.com/u/26624039?s=40&v=4",alt:"高产作家"},
-          ],
-          tag:"网站组酱油",
-          description:"该成员有点懒，没有什么好写的,该成员有点懒，没有什么好写的,该成员有点懒，没有什么好写的,该成员有点懒，没有什么好写的,该成员有点懒",
-          goal:"中上野1d1d1d1d1f1fws",
-          link:"github:ddddd",
-        },
-        {
-          avatar:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=82b70e7e9b2397ddd6799f0261b9d58a/5bafa40f4bfbfbed4ceb01e672f0f736aec31ffc.jpg",
-          name:"卢老爷3",
-          badgeArr:[
-            {link:"https://static.hdslb.com/images/favicon.ico",alt:"高产作家"},
-            {link:"https://static.hdslb.com/images/favicon.ico",alt:"高产演唱家"},
-            {link:"https://static.hdslb.com/images/favicon.ico",alt:"高产作家"}
-          ],
-          tag:"网站组酱油",
-          description:"该成员有点懒，没有什么好写的,该成员有点懒，没有什么好写的,该成员有点懒，没有什么好写的,该成员有点懒，没有什么好写的,该成员有点懒",
-          goal:"中上野",
-          link:"github:ddddd",
-        },
-        {
-          avatar:"https://gss3.bdstatic.com/7Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=82b70e7e9b2397ddd6799f0261b9d58a/5bafa40f4bfbfbed4ceb01e672f0f736aec31ffc.jpg",
-          name:"卢老爷4",
-          badgeArr:[
-            {link:"https://static.hdslb.com/images/favicon.ico",alt:"高产作家"}
-          ],
-          tag:"网站组酱油",
-          description:"该成员有点懒，没有什么好写的,该成员有点懒",
-          goal:"中上野",
-          link:"github:ddddd",
-        }
-      ],
-      stillMembers:[]
+      arrText: [],
+      bannerText: null,
+      bannerImage: '',
+      moveMembers: null,
+      stillMembers: null
     }
   }
   componentDidMount() {
-    let i = 1;
-    this.bannerTimer = setInterval(
-      () => {
-        this.initialBanner(i);
-        i < this.state.arrText.length-1 ? i++ : i=0;
-      },
-      5000
-    );
-
-    // 分隔数组是否动画弹出
-    let moveMembers = this.state.moveMembers
-    let stillMembers = moveMembers.splice(0,2)
-    this.setState({
-      moveMembers:moveMembers,
-      stillMembers:stillMembers
-    })
+    // 获取数据
+    fetch(Api.members)
+      .then(res => res.json())
+      .then(data => {
+        const header = data.members_header;
+        // 分隔是否动画弹出的数组
+        let moveMembers =  data.members_content;
+        let stillMembers = moveMembers.splice(0,5);
+        this.setState({
+          arrText: header.bannerText,
+          bannerText: header.bannerText[0],
+          bannerImage: header.image,
+          moveMembers: moveMembers,
+          stillMembers: stillMembers
+        });
+        let i = 1;
+        this.refs.bannerText.classList.add('members__banner--show')
+        this.bannerTimer = setInterval(
+          () => {
+            this.initialBanner(i);
+            i < this.state.arrText.length-1 ? i++ : i=0;
+          },
+          5000
+        );
+      });
   }
   // 初始化滚动字幕
   initialBanner(i) {
@@ -168,13 +112,18 @@ export default class Members extends Component {
   render() {
     const stillMembers = this.state.stillMembers
     const moveMembers = this.state.moveMembers
+    const bannerImage = this.state.bannerImage
     return (
       <div className="members">
-        <div className="members__banner">
-          <h1 className="members__banner--top">ChuangMing Members</h1>
-          <h1 className="members__banner--middle">创明工作室</h1>
-          <Banner bannerText={this.state.bannerText} />
-        </div>
+        {
+          bannerImage ? (
+            <div className="members__banner" style={{ background: `url(${this.state.bannerImage})` }}>
+              <h1 className="members__banner--top">ChuangMing Members</h1>
+              <h1 className="members__banner--middle">创明工作室</h1>
+              <h3 ref="bannerText" className="members__banner--footer">{this.state.bannerText}</h3>
+            </div>
+          ) : <div className="members__skeleton"><Loading></Loading></div>
+        }
         <div className="members__section">
           <div className="members__container">
             {
@@ -196,7 +145,7 @@ export default class Members extends Component {
                   }).concat(moveMembers.map((e,i) => {
                       return (
                         <LazyLoad 
-                          key={i+1}
+                          key={-i}
                           height={200}
                           offset={-200}
                         >

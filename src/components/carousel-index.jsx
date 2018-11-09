@@ -71,7 +71,7 @@ export default class Carousel extends Component {
           {this.state.data && Array.isArray(this.state.data) ? this.state.data.map((item, index) => {
             return (
               <div key={index} className="swiper-slide">
-                <a href={item.url}><img src={item.image} /></a>
+                <a href={item.url}><div style={{ backgroundImage: `url(${item.image})` }}></div></a>
               </div>
             );
           }) : <Loading></Loading>}

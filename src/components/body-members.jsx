@@ -57,7 +57,7 @@ class MemberItem extends Component {
             学习方向 : <span>{this.props.goal}</span>
           </div>
           <div className="members__container--item-right-link">
-            <span>{this.props.link}</span>
+            关于Ta : <span>{this.props.link}</span>
           </div>
         </div>
       </div>
@@ -77,14 +77,14 @@ export default class Members extends Component {
       stillMembers: null
     };
   }
-  componentDidMount(props) {
+  componentDidMount() {
     // 获取数据
     fetch(Api.members)
       .then(res => res.json())
       .then(data => {
         const header = data.members_header;
         // 分隔是否动画弹出的数组
-        let moveMembers =  data.members_content;
+        let moveMembers =  data.members_content.sort((x,y)=>x.order-y.order);
         let stillMembers = moveMembers.splice(0,5);
         this.setState({
           arrText: header.bannerText,
@@ -92,17 +92,21 @@ export default class Members extends Component {
           bannerImage: header.image,
           moveMembers: moveMembers,
           stillMembers: stillMembers
+        }, ()=>{
+          let i = 1;
+          this.refs.bannerText.classList.add('members__banner--show')
+          this.bannerTimer = setInterval(
+            () => {
+              this.initialBanner(i);
+              i < this.state.arrText.length-1 ? i++ : i=0;
+            },
+            5000
+          );
         });
-        let i = 1;
-        this.refs.bannerText.classList.add('members__banner--show')
-        this.bannerTimer = setInterval(
-          () => {
-            this.initialBanner(i);
-            i < this.state.arrText.length-1 ? i++ : i=0;
-          },
-          5000
-        );
       });
+  }
+  componentWillUnmount() {
+    clearInterval(this.bannerTimer);
   }
   // 初始化滚动字幕
   initialBanner(i) {
@@ -137,9 +141,9 @@ export default class Members extends Component {
                         badgeArr={e.badgeArr}
                         name={e.name}
                         tag={e.tag}
-                        description={e.description}
+                        description={e.description || '这个人很懒，什么都没留下'}
                         goal={e.goal}
-                        link={e.link}
+                        link={e.link || '佛系修仙，与世隔绝中...'}
                       />
                     )
                   }).concat(moveMembers.map((e,i) => {
@@ -155,9 +159,9 @@ export default class Members extends Component {
                             badgeArr={e.badgeArr}
                             name={e.name}
                             tag={e.tag}
-                            description={e.description}
+                            description={e.description || '这个人很懒，什么都没留下'}
                             goal={e.goal}
-                            link={e.link}
+                            link={e.link || '佛系修仙，与世隔绝中...'}
                           />
                         </LazyLoad>
                       )

@@ -4,5 +4,6 @@ export default {
   base: `${BASE}/base.json`,
   sections: `${BASE}/sections.json`,
   carousel: `${BASE}/carousel.json`,
-  members: `${BASE}/members.json`
+  members: `${BASE}/members.json`,
+  about: `${BASE}/about.json`
 }

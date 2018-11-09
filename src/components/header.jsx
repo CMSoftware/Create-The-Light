@@ -14,7 +14,15 @@ export default class Header extends Component {
     super(props);
     this.state = {
       isMenuActive: false,
+      logo: props.logo,
+      title: props.title,
     };
+  }
+  componentWillReceiveProps(props) {
+    this.setState({
+      logo: props.logo,
+      title: props.title,
+    });
   }
   getScrollTop() {
     // 拿到当前滚动条高度
@@ -56,11 +64,15 @@ export default class Header extends Component {
       <header className="header" ref={el => this.initialScroll(el)}>
         <div className="logo">
           <a href="/">
-            <img
-              className="logo__icon"
-              src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2959708265,3856768320&fm=58&bpow=705&bpoh=675"
-              alt="Logo" />
-            <span className="logo__text">Creative</span>
+            {
+              this.state.logo && (
+                <img
+                  className="logo__icon"
+                  src={this.state.logo}
+                  alt="Logo" />
+              )
+            }
+            <span className="logo__text">{this.state.title}</span>
           </a>
         </div>
         <nav className="nav">

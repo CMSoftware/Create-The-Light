@@ -7,8 +7,9 @@
 import React, { Component } from 'react';
 import './carousel-index.scss';
 import isMobile from '../lib/isMobile';
-import Api from '../Api';
+import fetchData from '../lib/fetchData';
 import Loading from '../lib/loading';
+import Api from '../Api';
 
 import '../../node_modules/swiper/dist/css/swiper.min.css';
 import Swiper from 'swiper';
@@ -22,7 +23,8 @@ export default class Carousel extends Component {
     }
   }
   componentDidMount(props) {
-    this.getData();
+    // 获取轮播数据
+    fetchData.call(this, Api.carousel, 'data');
     // 监听react DOM触发更新，则执行swiper初始化
     this._watcher = setInterval(() => {
       if(this._swiperEl && this._swiperEl.childElementCount > 0) {
@@ -53,16 +55,6 @@ export default class Carousel extends Component {
     this.setState({
       swiper: newSwiper,
     });
-  }
-  // 获取轮播数据
-  getData() {
-    return fetch(Api.carousel)
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          data: data,
-        });
-      });
   }
   render() {
     return (

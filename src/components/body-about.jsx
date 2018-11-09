@@ -1,3 +1,7 @@
+/*
+** Created by vzt
+** 2018/11/04
+*/
 import React, { Component } from 'react';
 import './body-about.scss';
 

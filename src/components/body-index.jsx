@@ -8,6 +8,7 @@ import './body-index.scss';
 import Carousel from './carousel-index';
 import Loading from '../lib/loading';
 import Api from '../Api';
+import fetchData from '../lib/fetchData';
 
 class Section extends Component {
   render() {
@@ -16,14 +17,14 @@ class Section extends Component {
     return (
       <section className={"sections__wrapper " + this.props.classes.join(' ')}>
         <h2>
-          <span className="sections__title">{this.props.title}</span>
-          <span className="sections__description">{this.props.description}</span>
+          <span className="sections__title">{data.title}</span>
+          <span className="sections__description">{data.description}</span>
         </h2>
         <div className="sections__content">
-          {i !== 2 ? 
-            (data && data && Array.isArray(data[i].items) ? data[i].items.map((item, index) => {
+          {i !== 2 ?
+            (data && Array.isArray(data.items) ? data.items.map((item, index) => {
               return (
-                <div key={'item' + index} className="sections__item" style={{ backgroundColor: this.props.itemsColor[index] }}>
+                <div key={'item' + index} className="sections__item" style={{ backgroundColor: data.items_color && data.items_color[index] }}>
                   <div className="sections__item-image" style={{ backgroundImage: `url(${item.image})` }}></div>
                   <div className="sections__item-title">
                     <span>{item.title}</span>
@@ -36,29 +37,29 @@ class Section extends Component {
             }) : <Loading></Loading>)
             : // 第三部分（博客）比较特殊
             (<div className="sections__item">
-              <a href={data && data && data[i].url ? data[i].url : '#'}><p className="sections__blog-title">
-                <span>推荐博文</span>
+              <a href={data && data.url ? data.url : '#'}><p className="sections__blog-title">
+                <span>{data.title}</span>
                 <span>···</span>
               </p></a>
               <div className="sections__blog-rows">
-                {data && data && Array.isArray(data[i].items) ? data[i].items[0].articles.slice(0, 6).map((article, index) => {
-                    return (
-                      <div key={'article' + index} className="sections__blog-row">
-                        <a href={article.url}><span className="sections__blog-article">{article.title}</span></a>
-                        <span className="sections__blog-author">{article.author}</span>
-                      </div>
-                    )
-                  }) : <Loading></Loading>}
-                </div>
+                {data && Array.isArray(data.items) && data.items[0] && Array.isArray(data.items[0].articles) ? data.items[0].articles.slice(0, 6).map((article, index) => {
+                  return (
+                    <div key={'article' + index} className="sections__blog-row">
+                      <a href={article.url}><span className="sections__blog-article">{article.title}</span></a>
+                      <span className="sections__blog-author">{article.author}</span>
+                    </div>
+                  )
+                }) : <Loading></Loading>}
+              </div>
             </div>)
-            }
+          }
         </div>
-        {data && Array.isArray(data) && data[i].url && (
+        {data && data.url && (
           <div className="sections__more">
-            <a href={data[i].url}><button className="sections__more-button">更多 ></button></a>
+            <a href={data.url}><button className="sections__more-button">更多 ></button></a>
           </div>
         )}
-        
+
       </section>
     );
   }
@@ -70,42 +71,15 @@ export default class Body extends Component {
     this.state = {
       sectionsData: null,
       sectionsProps: [
-        {
-          index: 0,
-          classes: ['sections__stacks'],
-          title: '主要方向',
-          description: '描述描述描述描述描述描述描述描述',
-          itemsColor: ['#EE4E1C', '#7FBB04', '#44A4F1', '#F5B901']
-        },
-        {
-          index: 1,
-          classes: ['sections__projects'],
-          title: '作品',
-          description: '描述描述描述描述描述描述描述描述',
-        },
-        {
-          index: 2,
-          classes: ['sections__articles'],
-          title: '博客',
-          description: '描述描述描述描述描述描述描述描述',
-        },
-        {
-          index: 3,
-          classes: ['sections__members'],
-          title: '成员',
-          description: '描述描述描述描述描述描述描述描述',
-        },
+        { classes: ['sections__stacks'] },
+        { classes: ['sections__projects'] },
+        { classes: ['sections__articles'] },
+        { classes: ['sections__members'] },
       ],
     }
   }
   componentDidMount() {
-    fetch(Api.sections)
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          sectionsData: data,
-        });
-      });
+    fetchData.call(this, Api.sections, 'sectionsData');
   }
   render() {
     return (
@@ -114,19 +88,18 @@ export default class Body extends Component {
         <Carousel></Carousel>
         {/* 各个section */}
         <div className="sections">
-          {this.state.sectionsProps.map((s, i) => {
-            return (
-              <Section
-                classes={s.classes}
-                key={'section' + s.index}
-                data={this.state.sectionsData}
-                index={s.index}
-                title={s.title}
-                description={s.description}
-                itemsColor={s.itemsColor || []}
-              ></Section>
-            );
-          })}
+          {
+            this.state.sectionsData && Array.isArray(this.state.sectionsData) ? this.state.sectionsData.map((data, i) => {
+              return (
+                <Section
+                  classes={this.state.sectionsProps[i].classes}
+                  key={`section-${i}`}
+                  data={data}
+                  index={i}
+                ></Section>
+              );
+            }) : <Loading></Loading>
+          }
         </div>
       </div>
     );

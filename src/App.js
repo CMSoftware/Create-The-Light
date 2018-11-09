@@ -3,10 +3,11 @@
 ** 2018/11/4
 */
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import RouteHook from 'react-route-hook';
 import 'normalize.css';
 import './App.scss';
+import Api from './Api';
 
 import Header from './components/header.jsx';
 import Index from './components/body-index.jsx';
@@ -19,14 +20,28 @@ class App extends Component {
     super(props);
     this.state = {
       navIndex: 0,
+      baseData: null,
+      sectionsData: null,
     }
+  }
+  componentDidMount(props) {
+    this.fetchData(Api.base, 'baseData');
+  }
+  fetchData(url, stateName) {
+    return fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          [stateName]: data,
+        });
+      });
   }
   render() {
     return (
       <div className="App">
         <Router>
           <div>
-            <Header>
+            <Header data={this.state.baseData && this.state.baseData.header}>
               <ul>
                 <li className={this.state.navIndex === 0 ? "nav--active" : ""}>
                   <Link to="/">首页</Link>
@@ -47,7 +62,7 @@ class App extends Component {
             <RouteHook path="/about" component={About} onEnter={() => this.setState({ navIndex: 3 })}></RouteHook>
           </div>
         </Router>
-        <Footer></Footer>
+        <Footer data={this.state.baseData && this.state.baseData.footer}></Footer>
       </div>
     );
   }

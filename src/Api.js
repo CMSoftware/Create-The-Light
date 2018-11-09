@@ -1,4 +1,4 @@
-const BASE = '//cmsoftware.github.io/create_the_light';
+const BASE = 'https://cmsoftware.github.io/create_the_light';
 
 export default {
   base: `${BASE}/base.json`,

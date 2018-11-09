@@ -75,9 +75,9 @@ export default class Members extends Component {
       bannerImage: '',
       moveMembers: null,
       stillMembers: null
-    }
+    };
   }
-  componentDidMount() {
+  componentDidMount(props) {
     // 获取数据
     fetch(Api.members)
       .then(res => res.json())

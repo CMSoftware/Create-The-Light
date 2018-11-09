@@ -4,6 +4,7 @@
 */
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import RouteHook from 'react-route-hook';
 import 'normalize.css';
 import './App.scss';
 
@@ -27,23 +28,23 @@ class App extends Component {
           <div>
             <Header>
               <ul>
-                <li onClick={() => this.setState({ navIndex: 0 })} className={this.state.navIndex === 0 ? 'nav--active' : ''}>
+                <li className={this.state.navIndex === 0 ? "nav--active" : ""}>
                   <Link to="/">首页</Link>
                 </li>
-                <li onClick={() => {}}>
+                <li onClick={() => { }}>
                   <a rel="noopener noreferrer" href="//cmsoftware.github.io/" target="_blank">空间</a>
                 </li>
-                <li onClick={() => this.setState({ navIndex: 2 })} className={this.state.navIndex === 2 ? 'nav--active' : ''}>
+                <li className={this.state.navIndex === 2 ? "nav--active" : ""}>
                   <Link to="/members">成员</Link>
                 </li>
-                <li onClick={() => this.setState({ navIndex: 3 })} className={this.state.navIndex === 3 ? 'nav--active' : ''}>
+                <li className={this.state.navIndex === 3 ? "nav--active" : ""}>
                   <Link to="/about">关于</Link>
                 </li>
               </ul>
             </Header>
-            <Route path="/" exact component={Index}></Route>
-            <Route path="/members" component={Members}></Route>
-            <Route path="/about" component={About}></Route>
+            <RouteHook path="/" exact component={Index} onEnter={() => this.setState({ navIndex: 0 })}></RouteHook>
+            <RouteHook path="/members" component={Members} onEnter={() => this.setState({ navIndex: 2 })}></RouteHook>
+            <RouteHook path="/about" component={About} onEnter={() => this.setState({ navIndex: 3 })}></RouteHook>
           </div>
         </Router>
         <Footer></Footer>

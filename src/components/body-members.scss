@@ -44,12 +44,13 @@
     &__banner {
         width: 100%;
         height: 30rem;
-        background-size: cover;
         color:#fff;
         display: flex;
         flex-direction: column;
         justify-content: center;
         background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
         align-items: center;
         font-family: Segoe UI Light,Microsoft YaHei;
         &>h1{
@@ -84,8 +85,9 @@
         box-sizing: border-box;
         // 成员item
         &--item {
+            box-sizing: border-box;
             width: 100%;
-            padding: 100px 0;
+            padding: 100px 1rem;
             margin: 100px 0;
             display: flex;
             flex-direction: row;
@@ -95,7 +97,7 @@
             &-left {
                 width: 25%;
                 min-height: 800px;
-                padding: 0 60px;
+                padding: 1rem 60px 0 60px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -112,8 +114,8 @@
                     max-width: 10rem;
                     display: flex;
                     flex-flow: row wrap;
-                    margin-top: 36px;
                     justify-content: center;
+                    margin-top: 1rem;
                     &-img{
                         position: relative;
                         // 徽章图片
@@ -183,11 +185,11 @@
                 }
                 // 介绍
                 &-description {
-                    font-size: 16px; /*no*/
+                    font-size: 15px; /*no*/
                 }
                 // 学习方向
                 &-goal {
-                    font-size: 18px; /*no*/
+                    font-size: 16px; /*no*/
                     margin-bottom: 50px;
                     &>span {
                         color: #337ab7;

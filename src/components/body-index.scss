@@ -199,6 +199,8 @@
 
 // members
 .sections__members {
+  display: flex;
+  flex-flow: column nowrap;
   .sections__content {
     flex-flow: row wrap-reverse;
     .sections__item {

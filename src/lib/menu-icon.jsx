@@ -21,7 +21,10 @@ export default class MenuIcon extends Component {
   }
   handleTogglerClick() {
     if (this._menuEl) {
-      this._menuEl.classList.toggle('is-active');
+      if (this.state.isActive) 
+        this._menuEl.classList.add('is-active');
+      else 
+        this._menuEl.classList.remove('is-active');
     }
   }
   render() {

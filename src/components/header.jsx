@@ -14,14 +14,12 @@ export default class Header extends Component {
     super(props);
     this.state = {
       isMenuActive: false,
-      logo: props.logo,
-      title: props.title,
+      headerData: props.data,
     };
   }
   componentWillReceiveProps(props) {
     this.setState({
-      logo: props.logo,
-      title: props.title,
+      headerData: props.data,
     });
   }
   getScrollTop() {
@@ -46,7 +44,7 @@ export default class Header extends Component {
     }, 100);
     document.addEventListener('scroll', throttleFn);
   }
-  handleTogglerClick(e) {
+  toggleMenu(e) {
     this.setState({
       isMenuActive: !this.state.isMenuActive,
     }, () => {
@@ -65,22 +63,22 @@ export default class Header extends Component {
         <div className="logo">
           <a href="/">
             {
-              this.state.logo && (
+              this.state.headerData && this.state.headerData.logo && (
                 <img
                   className="logo__icon"
-                  src={this.state.logo}
+                  src={this.state.headerData.logo}
                   alt="Logo" />
               )
             }
-            <span className="logo__text">{this.state.title}</span>
+            <span className="logo__text">{this.state.headerData && this.state.headerData.title}</span>
           </a>
         </div>
         <nav className="nav">
           {this.props.children}
         </nav>
         <nav className="nav-mobile">
-          <MenuIcon className="nav__toggler" isActive={this.state.isMenuActive} handleClick={e => this.handleTogglerClick(e)}></MenuIcon>
-          <div className="nav__menu" ref={el => this._navToggler = el} onClick={e => this.handleTogglerClick(e)}>
+          <MenuIcon className="nav__toggler" isActive={this.state.isMenuActive} handleClick={e => this.toggleMenu(e)}></MenuIcon>
+          <div className="nav__menu" ref={el => this._navToggler = el} onClick={e => this.toggleMenu(e)}>
             {this.props.children}
           </div>
         </nav>

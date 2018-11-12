@@ -44,7 +44,7 @@ Rest in peace, man
 
 - <b>React</b>：📦 专注于 View 层的前端框架
 
-- <b>Hexo</b>：📦 快速部署博客，***空间***基于 Hexo
+- <b>Hexo</b>：📦 快速部署博客，(空间) 基于 Hexo
 
 - <b>SCSS</b>：📦 CSS 预处理，赋予 CSS 可编程性
 

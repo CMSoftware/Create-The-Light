@@ -18,11 +18,11 @@ Rest in peace, man
 
 ## 开发者
 
-* 页面设计于网上资源借鉴，若有侵权，请联系我们
-
 @[vvzt](https://github.com/vvzt)
 
-@[lsj9757](https://github.com/orgs/CMSoftware/people/lsj9757)
+@[lsj9757](https://github.com/lsj9757)
+
+* 页面设计于网上资源借鉴，若有侵权，请联系我们
 
 * 如有 BUG ，（主页、空间、导航栏）请联系 @[vvzt](https://github.com/vvzt) ，（成员、关于、页脚） 请联系 @[lsj9757](https://github.com/orgs/CMSoftware/people/lsj9757)
 

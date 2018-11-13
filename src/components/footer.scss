@@ -1,175 +1,91 @@
 /*
 ** 首页底部栏css
 ** Coding by lsj
-** 2018/11/7
+** 2018/11/10
 */
 $footer__normal--color:#bccff5;
 $footer__link--color:gold;
 .footer {
     width: 100%;
-    min-height: 1000px;
-    background: url('http://bk.tencent.com/static/images/index/banner_bg07.png');
-    background-size: cover;
-    background-position: 0% 100%;
+    padding: 1rem 0;
+    background: url('http://139.199.2.100/CM/img/bg.png');
+    background-size: 100% 100%;
     display: flex;
-    flex-direction: row;
+    flex-flow: column wrap;
+    align-items: center;
     font-size: 16px; /*no*/
     color: $footer__normal--color;
     
-    // left块
+    // introduction
     &__introduction {
-        width: 37%;
-        height: inherit;
-        padding-left: 6%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-    &__picture {
         display: flex;
         flex-direction: row;
-        height: 160px;
+        height: 120px;
+        justify-content: center;
         &--logo {
-            width: 160px;
-            height: 160px;
+            width: 120px;
+            height: 120px;
         }
         &--description {
             margin-left: 50px;
-            height: 160px;
-            line-height: 160px;
-            font-size: 20px; /*no*/
+            height: 120px;
+            line-height: 120px;
+            font-size: 16px; /*no*/
             color: #fff;
             overflow: hidden;
         }
     }
-    &__email {
-        margin-top: 60px;
-    }
-    &__copyright {
-        margin-top: 170px;
-    }
-
-    // middle块
+    // link
     &__link {
-        width: 37%;
-        height: inherit;
         display: flex;
-        flex-direction: column;
+        flex-flow: row wrap;
+        padding: 0.5rem 0;
+        font-size: 14px; /*no*/
         justify-content: center;
-        // padding-left: 3%;
-        overflow: hidden;
         &--title {
-            margin-top: 75px;
+            margin: 0.2rem;
             color: $footer__link--color;
         }
         &--row {
-            &>ul {
-                display: flex;
-                flex-flow: column wrap;
-                height: 600px;
-                &>li {
-                    list-style: none;
-                    padding: 60px 0;
-                    &>a, &>a:visited{
-                        color: $footer__normal--color;
-                        transition: color .3s;
-                        text-decoration: none;
-                    }
-                    &>a:link, &>a:hover, &>a:active {
-                        color: $footer__link--color;
-                    }
-                }
+            display: flex;
+            justify-content: center;
+            flex-flow: row wrap;
+            &>a, &>a:visited{
+                color: $footer__normal--color;
+                transition: all .3s;
+                text-decoration: none;
+                padding: 0.2rem 0.2rem;
+                cursor: pointer;
             }
+            &>a:hover, &>a:active {
+                color: $footer__link--color;
+                transform: translateY(-4%);
+            }  
         }
     }
-
-    // right块
-    &__elements {
-        height: inherit;
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        justify-content: space-around;
-        padding: 100px 0;
-        box-sizing: border-box;
-        align-items: center;
-        &--logo {
-            width: 270px;
-            height: 270px;
-        }
+    // email
+    &__email {
+        padding-bottom: 0.7rem;
+    }
+    // copyright
+    &__copyright {
+        padding-bottom: 0.5rem;
     }
 }
+
 @media only screen and (max-width: 768px) {
     .footer {
         min-width: 16rem;
-        flex-direction: column;
-        &__introduction {
-            width: 100%;
-            padding: 80px;
-            box-sizing: border-box;
-        }
-        &__picture {
-            justify-content: center;
-            height: 120px;
-            &--logo {
-                width: 120px;
-                height: 120px;
-            }
-            &--description {
-                margin-left: 18px;
-                height: 120px;
-                line-height: 120px;
-                font-size: 16px; /*no*/
-            }
-        }
-        &__email {
-            margin-top: 50px;
-            text-align: center;
-            overflow: hidden;
+        &__introduction--description {
+            margin-left: 18px;
         }
         &__copyright {
-            margin-top: 100px;
             text-align: center;
         }
         &__link {
             display: none;
-        }
-        &__elements {
-            flex-direction: row;
-            padding: 0px 100px 50px 100px;
-            &--logo {
-                width: 10%;
-                min-width: 200px;
-                height: 10%;
-                min-height: 200px;
-            }
         }
     }
 }
 @media only screen and (min-width: 769px) and (max-width: 1340px) {
-    .footer {
-        padding: 0 5%;
-        box-sizing: border-box;
-        &__introduction {
-            width: 45%;
-        }
-        &__elements {
-            display: none;
-        }
-        &__link {
-            flex: 1;
-            &--row {
-                &>ul>li {
-                    width: 11rem;
-                    height: 80px;
-                    // text-overflow: ellipsis;
-                    // white-space: nowrap;
-                    // overflow: hidden;
-                    &>a, &>a:visited{
-                        margin: 0 60px;
-                    } 
-                }
-            }
-        }
-    }
 }

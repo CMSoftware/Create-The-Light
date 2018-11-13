@@ -1,48 +1,60 @@
 /*
 ** 首页底部栏jsx
 ** Coding by lsj
-** 2018/11/7
+** 2018/11/10
 */
 import React, { Component } from 'react';
 import './footer.scss';
+import Api from '../Api';
 
 export default class Footer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      footer_image: null,
+      footer_links: null,
+      footer_email: null
+    };
+  }
+  componentDidMount() {
+    // 获取数据
+    fetch(Api.base)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          footer_image: data.footer.image,
+          footer_email: data.footer.email,
+          footer_links: data.footer.links
+        })
+      })
+  }
   render() {
+    const footer_links = this.state.footer_links
+    const footer_image = this.state.footer_image
+    const footer_email = this.state.footer_email
     return (
       <footer className="footer">
         <div className="footer__introduction">
-          <div className="footer__picture">
-            <img className="footer__picture--logo" src="https://webinput.nie.netease.com/img/my/icon.png" alt="logo"></img>
-            <div className="footer__picture--description">
-              湖北武汉中南民族大学创明工作室
-            </div>
-          </div>
-          <div className="footer__email">
-            chuangming2018skrskr@foxmail.com
-          </div>
-          <div className="footer__copyright">
-           Copyright © 2018 ChuangMing. All Rights Reserved
+          <img className="footer__introduction--logo" src={footer_image || 'https://webinput.nie.netease.com/img/my/icon.png'} alt="logo"></img>
+          <div className="footer__introduction--description">
+            湖北武汉中南民族大学创明工作室
           </div>
         </div>
         <div className="footer__link">
           <div className="footer__link--title">友情链接</div>
           <div className="footer__link--row">
-            <ul>
-              <li><a href="//www.baidu.com">中南民大大学</a></li>
-              <li><a href="//www.baidu.com">创新创业学院学院学院</a></li>
-              <li><a href="//www.baidu.com">中南民大大学</a></li>
-              <li><a href="//www.baidu.com">中南民大大学学院学院</a></li>
-              <li><a href="//www.baidu.com">创新创业学院</a></li>
-            </ul>
-            {/* <ul>
-              <li><a href="//www.baidu.com">中南民大大学学院学院</a></li>
-              <li><a href="//www.baidu.com">创新创业学院</a></li>
-            </ul> */}
+            {
+              footer_links && Array.isArray(footer_links) && footer_links.map((e,i)=>{
+                return (
+                  <a key={i+1} href={e.url} target="_blank">{e.title}</a>  
+                )
+              })
+            }
           </div>
         </div>
-        <div className="footer__elements">
-          <img className="footer__elements--logo" src="https://webinput.nie.netease.com/img/my/icon.png" alt="logo"></img>
-          <img className="footer__elements--logo" src="https://webinput.nie.netease.com/img/my/icon.png" alt="logo"></img>
+        <div className="footer__email">{footer_email || 'cm_soft@163.com'}</div>
+        <div className="footer__copyright">
+          Copyright © 2018 ChuangMing. All Rights Reserved
         </div>
       </footer>
     );

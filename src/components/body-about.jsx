@@ -1,6 +1,6 @@
 /*
-** Created by vzt
-** 2018/11/04
+** Created by lsj
+** 2018/11/10
 */
 import React, { Component } from 'react';
 import './body-about.scss';

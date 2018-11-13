@@ -7,11 +7,12 @@ $footer__normal--color:#bccff5;
 $footer__link--color:gold;
 .footer {
     width: 100%;
-    padding: 1rem 0;
+    height: 16rem;
     background: url('http://139.199.2.100/CM/img/bg.png');
     background-size: 100% 100%;
     display: flex;
     flex-flow: column wrap;
+    justify-content: center;
     align-items: center;
     font-size: 16px; /*no*/
     color: $footer__normal--color;
@@ -20,8 +21,9 @@ $footer__link--color:gold;
     &__introduction {
         display: flex;
         flex-direction: row;
-        height: 120px;
         justify-content: center;
+        align-items: center;
+        height: 2rem;
         &--logo {
             width: 120px;
             height: 120px;
@@ -39,7 +41,7 @@ $footer__link--color:gold;
     &__link {
         display: flex;
         flex-flow: row wrap;
-        padding: 0.5rem 0;
+        padding: 0.5rem 10rem;
         font-size: 14px; /*no*/
         justify-content: center;
         &--title {
@@ -65,17 +67,18 @@ $footer__link--color:gold;
     }
     // email
     &__email {
-        padding-bottom: 0.7rem;
+        padding: 0.5rem;
     }
     // copyright
     &__copyright {
-        padding-bottom: 0.5rem;
+        padding: 0.5rem;
     }
 }
 
 @media only screen and (max-width: 768px) {
     .footer {
         min-width: 16rem;
+        height: 12rem;
         &__introduction--description {
             margin-left: 18px;
         }

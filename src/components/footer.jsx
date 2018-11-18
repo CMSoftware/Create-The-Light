@@ -44,9 +44,9 @@ export default class Footer extends Component {
           <div className="footer__link--title">友情链接</div>
           <div className="footer__link--row">
             {
-              footer_links && Array.isArray(footer_links) && footer_links.map((e,i)=>{
+              footer_links && Array.isArray(footer_links) && footer_links.map((item, i) => {
                 return (
-                  <a key={i+1} href={e.url} target="_blank">{e.title}</a>  
+                  <a key={i + 1} href={item.url} onClick={e => { e.preventDefault(); window.open(e.url) }}>{item.title}</a>
                 )
               })
             }

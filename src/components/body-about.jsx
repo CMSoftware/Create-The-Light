@@ -8,15 +8,12 @@ import Loading from '../lib/loading';
 import Api from '../Api';
 
 class ContactItem extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div className="about__section--contact-box">
         <div className="about__section--contact-box-header">{this.props.title}</div>
-        <a href={this.props.link} target="_blank">
-          <img src={this.props.img}></img>
+        <a href={this.props.link} onClick={e => { e.preventDefault(); window.open(this.props.link); }}>
+          <img src={this.props.img} alt={this.props.link}></img>
         </a>
       </div>
     )

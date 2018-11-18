@@ -47,7 +47,7 @@ class App extends Component {
                   <Link to="/">首页</Link>
                 </li>
                 <li onClick={() => { }}>
-                  <a rel="noopener noreferrer" href="//cmsoftware.github.io/" target="_blank">空间</a>
+                  <a rel="noopener noreferrer" href="//cmsoftware.github.io/" onClick={e => { e.preventDefault(); window.open('//cmsoftware.github.io/'); }}>空间</a>
                 </li>
                 <li className={this.state.navIndex === 2 ? "nav--active" : ""}>
                   <Link to="/members">成员</Link>

@@ -37,7 +37,7 @@ export default class Footer extends Component {
         <div className="footer__introduction">
           <img className="footer__introduction--logo" src={footer_image || 'https://webinput.nie.netease.com/img/my/icon.png'} alt="logo"></img>
           <div className="footer__introduction--description">
-            湖北武汉中南民族大学创明工作室
+            湖北武汉创明工作室
           </div>
         </div>
         <div className="footer__link">
